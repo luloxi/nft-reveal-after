@@ -43,11 +43,10 @@ const { assert, expect } = require("chai")
           assert.equal(tokenURI.toString(), `${baseURI}hidden.json`)
         })
         it("Shows the correct balance for an owner of an NFT", async function () {
-          const deployerAddress = deployer.address
-          const deployerBalance = await ELC.balanceOf(deployerAddress)
+          const deployerBalance = await ELC.balanceOf(deployer.address)
           assert.equal(deployerBalance.toString(), "1")
         })
-        it("Shows updated metadata after changing Base URI", async function () {
+        it("Shows updated metadata after changing Base URI (reveal)", async function () {
           const newIPFS = "ipfs://NEWIPFS/"
           const transactionResponse = await ELC.changeBaseURI(newIPFS)
           await transactionResponse.wait(1)
@@ -73,17 +72,11 @@ const { assert, expect } = require("chai")
         })
         it("Withdraws all ETH to owner address", async function () {
           const minting50cost = mintFee.mul(50)
-          // Get starting balance of deployer (owner) address
           const startingDeployerBalance = await ELC.provider.getBalance(deployer.address)
-          // Call withdraw from deployer's (owner) address
           const transactionResponse = await ELC.withdraw()
-          // Wait for 1 block confirmation
           const transactionReceipt = await transactionResponse.wait(1)
-          // Get these variables to precisely compute ETH withdrawn - gas used
           const { gasUsed, effectiveGasPrice } = transactionReceipt
-          // Multiply these bigNumbers to get the gasCost
           const gasCost = gasUsed.mul(effectiveGasPrice)
-          // Get deployer's (owner) balance after calling withdraw()
           const endingDeployerBalance = await ELC.provider.getBalance(deployer.address)
           assert.equal(
             startingDeployerBalance.add(minting50cost).toString(),

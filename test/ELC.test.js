@@ -1,15 +1,14 @@
-const { getNamedAccounts, deployments, ethers, network } = require("hardhat")
+const { deployments, ethers, network } = require("hardhat")
 const { developmentChains, networkConfig } = require("../helper-hardhat-config")
 const { assert, expect } = require("chai")
 
-const chainId = network.config.chainId
+// const chainId = network.config.chainId
 
 // If not on a development chain
 !developmentChains.includes(network.name)
   ? describe.skip // skip this test, otherwise...
   : describe("ELC Unit Tests", async function () {
-      let deployer, ELC, buyer
-      const mintFee = networkConfig[chainId]["mintFee"]
+      let deployer, ELC, buyer, mintFee
 
       beforeEach(async function () {
         accounts = await ethers.getSigners()
@@ -18,6 +17,8 @@ const chainId = network.config.chainId
         await deployments.fixture("ELC")
         ELC = await ethers.getContract("ELC")
         ELCbuyer = await ethers.getContract("ELC", buyer)
+
+        mintFee = await ELC.i_mintFee()
       })
       describe("Basic Variables check", function () {
         it("initializes the contract correctly", async function () {
@@ -70,8 +71,8 @@ const chainId = network.config.chainId
             await ELCbuyer.mint({ value: mintFee })
           }
         })
-        xit("Withdraws all ETH to owner address", async function () {
-          const minting50cost = mintFee * 50
+        it("Withdraws all ETH to owner address", async function () {
+          const minting50cost = mintFee.mul(50)
           // Get starting balance of deployer (owner) address
           const startingDeployerBalance = await ELC.provider.getBalance(deployer.address)
           // Call withdraw from deployer's (owner) address

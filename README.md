@@ -11,7 +11,8 @@
 ## Pendiente:
 
 - Subir metadata e imagenes a piñata y probar reveal
-- Revisar test de withdraw ETH
+- Averiguar cómo configurar la data que aparece en OpenSea tras crear una coleccion NFT
+- Preguntar si quieren que incluya royalties por las ventas
 
 ## Notas:
 

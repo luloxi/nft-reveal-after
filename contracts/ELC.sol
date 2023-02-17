@@ -17,17 +17,11 @@ contract ELC is ERC721, Ownable {
     string public baseURI = "ipfs://QmTVKvYvc3Djq8RW4PRKWiz3dFUd4XfYcRYDcBoQdnAi4J/"; 
     // Must have a hidden.json file inside that folder, placeholder image and metadata until reveal
 
-    constructor() ERC721("Eco Lions Club", "ELC") {
-        
-    }
+    constructor() ERC721("Eco Lions Club", "ELC") {}
 
-       function withdraw() public onlyOwner {
+    function withdraw() public onlyOwner {
         uint balance = address(this).balance;
         payable(msg.sender).transfer(balance);
-    }
-
-    function _baseURI() internal view override returns (string memory) {
-        return baseURI;
     }
 
     function changeBaseURI(string memory baseURI_) public onlyOwner {
@@ -60,5 +54,9 @@ contract ELC is ERC721, Ownable {
 
     function getTokenCounter() public view returns (uint256) {
         return s_tokenCounter;
+    }
+
+    function _baseURI() internal view override returns (string memory) {
+        return baseURI;
     }
 }

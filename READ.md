@@ -1,36 +1,24 @@
-# NFT revealed after minting
+Name: Eco Lions Club
+Symbol: ELC
+Total: 50 NFT
+Cost: 0.076 ETH
+Network: Ethereum -> Preguntar
 
-## Info for this project:
-
-- Name: Eco Lions Club
-- Symbol: ELC
-- Total: 50 NFT
-- Cost: 0.076 ETH
-- Network: Ethereum -> Preguntar
-
-## Pendiente:
+Pendiente:
 
 - Subir metadata e imagenes a piñata y probar reveal
-- Imagenes y Data que aparece en OpenSea tras crear una coleccion NFT
-  Logo 350 x 350
-  Featured image 600 x 400
-  Banner image 1400 x 350
-  Descripcion
-  Hasta 5 tags para identificar la coleccion
-  web
-  medium
-  telegram
+- Revisar test de withdraw ETH
+- 
 
-- Preguntar si quieren que incluya royalties por las ventas
-- Averiguar cómo agregar botón de connect wallet a Wordpress
-- Averiguar cómo agregar botón de write contract a Wordpress
+Notas:
 
-## Notas:
+1. Averiguar cómo integrar window.ethereum y hooks a contratos a wordpress. 
+Hay algun plugin o libreria? O habrá que arreglarse con JavaScript a secas?
 
-1. Averiguar cómo integrar window.ethereum y hooks a contratos a wordpress.
-   Hay algun plugin o libreria? O habrá que arreglarse con JavaScript a secas?
+2.
+El contrato debera ser ejecutado 50 veces y elegir al azar unicamente entre los NFTs disponibles. Lazy Minting. (Pseudo-Aleatoriedad) 
 
-2. "El contrato debera ser ejecutado 50 veces y elegir al azar unicamente entre los NFTs disponibles. Lazy Minting. (Pseudo-Aleatoriedad)"
+--
 
 Obtener un número aleatorio directo de la blockchain es imposible, ya que al ser un sistema determinístico, tiene variables fijas que estan determinadas de antemano y no están sujetas a incertidumbre, por lo que un mal actor podría utilizar dichas variables para evitar dicho control.
 
@@ -44,11 +32,4 @@ El reveal podrá ser únicamente ejecutado por el wallet creador del contrato in
 
 Esto optimiza costos de gas tanto para el creador del contrato como para quienes lo mintean, y garantiza que no haya manipulación por parte de los compradores para obtener NFTs más raros.
 
-## Strategies for Reveal:
 
-1. Todos los tokenURI estan revelados desde el principio
-   Los usuarios habiles podrán elegir cuales NFT mintear con precisión.
-2. Server controlled, NFT is revealed as something is minted
-   No gas, but needs server which should stay up and running. Image files need to be in random order.
-3. Changing the baseURI for IPFS hash to the full collection.
-   Requires gas but simplest to implement.

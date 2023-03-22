@@ -21,7 +21,8 @@
   medium
   telegram
 
-- Preguntar si quieren que incluya royalties por las ventas
+- Incluir ERC721 de royalties?
+- Prevenir que se pueda "revelar" más de una vez con un require que chequee si revealed esta on
 - Averiguar cómo agregar botón de connect wallet a Wordpress
 - Averiguar cómo agregar botón de write contract a Wordpress
 
